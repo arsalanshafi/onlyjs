@@ -1,29 +1,22 @@
 
-// chagne the condition to -ve and then add switch outside
+
+
 export function render(whome, where, what) {
-    const position = ['head', 'tail', 'top', 'bottom'];
+    const position = ['head', 'tail'];
     const domPos =  where.toLowerCase();
-    if (position.includes(domPos)) {
-
-        switch (domPos) {
-            case position[0]:
-                whome.appendChild(what);
-                break;
-            case position[1]:
-                break;
-            case position[2]:
-                break;
-            case position[3]:
-                break;
-            default:
-
-        }
-    } else {
-console.warn(`Incorrect param passed to method render():
-whereInDom : string =  'head', 'tail', 'top' or 'bottom'
-By default the position set to 'document.body.<thisElement>'
-`);
+    if (!position.includes(domPos)) {
+      console.warn(`Incorrect param passed to method render():
+whereInDom : string =  'head' or 'tail'
+By default the position set to 'document.body.<thisElement>'`);
+    return;
     }
-    
-  //document.body.appendChild(button);
+  
+    switch (domPos) {
+      case position[0]:
+        whome.insertBefore(what, whome.firstChild);
+        break;
+      case position[1]:
+        whome.appendChild(what);
+        break;
+    }
 }
