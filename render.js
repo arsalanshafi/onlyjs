@@ -1,7 +1,7 @@
 
 
 
-export function render(whome, where, what) {
+export function render(whome = document.body, where, what) {
     const position = ['head', 'tail'];
     const domPos =  where.toLowerCase();
     if (!position.includes(domPos)) {
