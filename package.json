@@ -2,17 +2,16 @@
   "name": "onlyjs",
   "version": "1.0.0",
   "description": "A lightweight, dependency free JS library for dynamic websites.",
-  "keywords": [],
+  "keywords": [UI],
   "license": "MIT",
-  "author": "Arsalan Khan (github.com/124k3)",
+  "author": "Arsalan Khan (https://github.com/124k3)",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browser-sync start --server --files \"./**/*.*\""
+    "start": "node browsersync.js"
   },
   "devDependencies": {
-    "http-server": "^14.1.1",
-    "nodemon": "^3.1.9"
+    "browser-sync": "^3.0.3"
   }
 }
