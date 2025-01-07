@@ -43,6 +43,15 @@ export function create(element, styles) {
   if (noTextElements.includes(element.type.toLowerCase())) {
     htmlElement.innerText = '';
   } else {
+
+    if (element.type == 'label') {
+      htmlElement.setAttribute('for', element.htmlFor);
+    }
+    if (element.type == 'input') {
+      htmlElement.setAttribute('type', element.inputType);
+      htmlElement.setAttribute('placeholder', element.placeholder);
+    }
+
     htmlElement.innerText = element.text || "Haro, Eburi Nyan!";
     htmlElement.id = element.id || '';
     htmlElement.className = element.className || ``;
