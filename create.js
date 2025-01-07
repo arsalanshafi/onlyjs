@@ -41,7 +41,7 @@ export function create(element, styles) {
   const noTextElements = ['div', 'span', 'img', 'input'];
 
   if (noTextElements.includes(element.type.toLowerCase())) {
-    htmlElement.innerText = undefined;
+    htmlElement.innerText = '';
   } else {
     htmlElement.innerText = element.text || "Haro, Eburi Nyan!";
     htmlElement.id = element.id || '';
