@@ -72,11 +72,24 @@ export function create(element, styles) {
 }
 
 
+export function creates(elementProp, elementStyle) {
+  const prop = toObj(elementProp);
+  const style = toObj(elementStyle);
+  create(prop, style);
+}
 
 
-
-
-
+function toObj(string) {
+  const res = {};
+  string[0].split('\n').forEach(line => {
+    const [] = line.split(':').map(item => 
+    item.trim());
+    if (key && value) {
+      res[key] = value;
+    }
+  });
+ return res; 
+}
 
 
 
