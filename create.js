@@ -73,13 +73,13 @@ export function create(element, styles) {
 
 
 export function creates(elementProp, elementStyle) {
-  const prop = toObj(elementProp);
-  const style = toObj(elementStyle);
+  const prop = strToObj(elementProp);
+  const style = strToObj(elementStyle);
   create(prop, style);
 }
 
 
-function toObj(string) {
+function strToObj(string) {
   const res = {};
   string[0].split('\n').forEach(line => {
     const [] = line.split(':').map(item => 
