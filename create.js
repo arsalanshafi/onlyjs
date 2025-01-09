@@ -36,15 +36,15 @@ export function create(element, styles = '') {
 
   if (noTextElements.includes(element.type.toLowerCase())) {
     htmlElement.innerText = '';
+    if (element.type === 'input') {
+      htmlElement.setAttribute('type', element.inputType);
+      htmlElement.placeholder = element.placeholder;
+    }
   } else {
 
     if (element.type === 'label') {
       htmlElement.setAttribute('for', element.htmlFor);
       htmlElement.setAttribute('type', element.htmlType);
-    }
-    if (element.type === 'input') {
-      htmlElement.setAttribute('type', element.inputType);
-      htmlElement.setAttribute('placeholder', element.placeholder);
     }
     htmlElement.innerText = element.text || "Haro, Eburi Nyan!";
   }
