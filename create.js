@@ -27,15 +27,9 @@
  * 4. className = the html class to be assigned e.g "main__hentaiIsArt"
  *
  * */
-export function create(element, styles) {
+export function create(element, styles = '') {
   
-  if (typeof styles !== 'object') {
-  console.error('Styles should be an object');
-}
-  if (typeof element !== 'object') {
-  console.error('Element should be an object');
-}
-
+  if (typeof element === 'object') {
 
   const htmlElement = document.createElement(element.type);
   const noTextElements = ['div', 'span', 'img', 'input'];
@@ -58,7 +52,7 @@ export function create(element, styles) {
 
   }
 
-  if (styles) {
+  if (styles !== '') {
     for (const styleProperty in styles) {
       if (styles.hasOwnProperty(styleProperty)) {
 
@@ -69,6 +63,7 @@ export function create(element, styles) {
     }
   }
   return htmlElement;
+}
 }
 
 
