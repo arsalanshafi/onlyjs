@@ -38,19 +38,21 @@ export function create(element, styles = '') {
     htmlElement.innerText = '';
   } else {
 
-    if (element.type == 'label') {
+    if (element.type === 'label') {
       htmlElement.setAttribute('for', element.htmlFor);
+      htmlElement.setAttribute('type', element.htmlType);
     }
-    if (element.type == 'input') {
+    if (element.type === 'input') {
       htmlElement.setAttribute('type', element.inputType);
       htmlElement.setAttribute('placeholder', element.placeholder);
     }
-
     htmlElement.innerText = element.text || "Haro, Eburi Nyan!";
-    htmlElement.id = element.id || '';
-    htmlElement.className = element.className || ``;
-
   }
+
+    htmlElement.classList.add(element.className);
+    htmlElement.id = element.id || '';
+    //htmlElement.className = element.className || ``;
+
 
   if (styles !== '') {
     for (const styleProperty in styles) {
