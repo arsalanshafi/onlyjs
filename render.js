@@ -2,7 +2,7 @@
 
 
 export function render(whome = document.body, where, what) {
-    const position = ['head', 'tail'];
+    const position = ['after', 'inside'];
     const domPos =  where.toLowerCase();
     if (!position.includes(domPos)) {
       console.warn(`Incorrect param passed to method render():
@@ -13,7 +13,7 @@ By default the position set to 'document.body.<thisElement>'`);
   
     switch (domPos) {
       case position[0]:
-        whome.insertBefore(what, whome.firstChild);
+        whome.insertAdjacentElement('afterend', what);
         break;
       case position[1]:
         whome.appendChild(what);
