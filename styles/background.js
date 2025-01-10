@@ -1,5 +1,5 @@
-import { create } from './create.js';
-import { render } from './render.js';
+import { create } from './../create.js';
+import { render } from './../render.js';
 
 class Background {
   static matrix() {
