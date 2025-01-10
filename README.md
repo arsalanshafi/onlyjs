@@ -208,6 +208,12 @@ Attaches an event listener to a DOM element.
 
 ---
 
+## Deployment
+
+Once you've finished developing your website using the `onlyjs` library and are ready to make it available to others, you can deploy your project online.
+
+---
+
 ## Contributing
 
 Feel free to fork this repository, open an issue, or submit a pull request if you have improvements or bug fixes. Contributions are welcome!
