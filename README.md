@@ -15,10 +15,26 @@
 ---
 
 ## Installation
+---
 
-### Clone the repository
+### Prerequisites
 
-First, clone the `onlyjs` repository to your local machine:
+Before you begin, make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (which includes npm)
+
+To check if Node.js and npm are installed, run the following commands in your terminal:
+
+```bash
+node -v
+npm -v
+```
+
+If they are not installed, follow the instructions on the [Node.js website](https://nodejs.org/) to install them.
+
+### Step 1: Clone the Repository
+
+Clone the `onlyjs` repository to your local machine:
 
 ```bash
 git clone https://github.com/your-username/onlyjs.git
@@ -26,8 +42,40 @@ git clone https://github.com/your-username/onlyjs.git
 
 Alternatively, you can download the ZIP file and extract it.
 
+### Step 2: Install Dependencies
 ---
 
+Navigate to the cloned repository folder:
+
+```bash
+cd onlyjs
+```
+
+Then, install the required dependencies via npm:
+
+```bash
+npm install
+```
+
+### Step 3: Install BrowserSync
+
+`browser-sync` is used for live-reloading and serving your project locally. Install it globally with npm:
+
+```bash
+npm install -g browser-sync
+```
+
+### Step 4: Run the Project Locally
+
+To start a local development server and view your project in the browser, run the following command:
+
+```bash
+browser-sync start --server --files "*.html, *.js, *.css"
+```
+
+This will start a local server and automatically open your default web browser, where you can see your project in action. Any changes to your `.html`, `.js`, or `.css` files will trigger a live reload in the browser.
+
+---
 ## Usage
 
 ### Step 1: Import the Library
