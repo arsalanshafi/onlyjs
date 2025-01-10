@@ -15,7 +15,6 @@
 ---
 
 ## Installation
----
 
 ### Prerequisites
 
@@ -43,7 +42,6 @@ git clone https://github.com/your-username/onlyjs.git
 Alternatively, you can download the ZIP file and extract it.
 
 ### Step 2: Install Dependencies
----
 
 Navigate to the cloned repository folder:
 
