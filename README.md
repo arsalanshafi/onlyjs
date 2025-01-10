@@ -60,18 +60,20 @@ npm install
 `browser-sync` is used for live-reloading and serving your project locally. Install it globally with npm:
 
 ```bash
-npm install -g browser-sync
+npm install browser-sync --save-dev
 ```
 
-### Step 4: Run the Project Locally
+### Step 4: Edit the package.json file
 
-To start a local development server and view your project in the browser, run the following command:
+Add the following line `'start' : 'node browsersync.js'` in the `scripts` section.
 
-```bash
-browser-sync start --server --files "*.html, *.js, *.css"
 ```
-
-This will start a local server and automatically open your default web browser, where you can see your project in action. Any changes to your `.html`, `.js`, or `.css` files will trigger a live reload in the browser.
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node ./browsersync.js"
+  } 
+```
+This will ensure that the dev environment will work locally.
 
 ---
 ## Usage
