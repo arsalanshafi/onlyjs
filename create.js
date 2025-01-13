@@ -65,6 +65,10 @@ export function create(element, styles = '') {
     }
   }
   return htmlElement;
+} else {
+  console.warn(`
+  method 'create()' takes object's as argument,
+  i.e 'create(elementObj, elementStyleObj)', please provide parms of suitable data type`);
 }
 }
 
