@@ -15,3 +15,26 @@ export function style(element, styles) {
   }
 }
 
+
+export function applyStyle(styles) {
+  if (typeof styles === 'object' && styles !== null) {
+    this.style.cssText = '';  // Remove all existing inline styles
+
+    for (const styleProperty in styles) {
+      if (styles.hasOwnProperty(styleProperty)) {
+        this.style[styleProperty] = styles[styleProperty];
+      }
+    }
+  } else {
+    console.warn("The applyStyle method expects an object as an argument.");
+  }
+}
+
+Object.defineProperty(HTMLElement.prototype, 'applyStyle', {
+  value: function(styles) {
+    applyStyle.call(this, styles);
+  },
+  writable: true,
+  configurable: true
+});
+
