@@ -9,7 +9,7 @@ class Background {
       id: 'matrixCanvas',
       className: 'background'
     };
-
+/*
     const canvasStyle = {
       position: 'absolute',
       top: '0',
@@ -17,6 +17,17 @@ class Background {
       width: '100%',
       height: '100%',
       zIndex: '-1' // To place the canvas in the background
+    };
+
+*/    
+    const canvasStyle = {
+    position: 'fixed',  // Fixed positioning to stay in place when scrolling
+    top: '0',
+    left: '0',
+    right: '0',
+    bottom: '0',  // Ensure it covers the full viewport
+    zIndex: '-1', // Behind all other content
+    pointerEvents: 'none'  // Prevent canvas from interfering with user interactions
     };
 
     const canvas = create(canvasAttrs, canvasStyle);
