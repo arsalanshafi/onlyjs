@@ -16,7 +16,7 @@ export function style(element, styles) {
 }
 
 
-export function applyStyle(styles) {
+export function setStyle(styles) {
   if (typeof styles === 'object' && styles !== null) {
     this.style.cssText = '';  // Remove all existing inline styles
 
@@ -26,13 +26,13 @@ export function applyStyle(styles) {
       }
     }
   } else {
-    console.warn("The applyStyle method expects an object as an argument.");
+    console.warn("The setStyle method expects an object as an argument.");
   }
 }
 
-Object.defineProperty(HTMLElement.prototype, 'applyStyle', {
+Object.defineProperty(HTMLElement.prototype, 'setStyle', {
   value: function(styles) {
-    applyStyle.call(this, styles);
+    setStyle.call(this, styles);
   },
   writable: true,
   configurable: true
