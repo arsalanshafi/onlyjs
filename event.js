@@ -19,7 +19,7 @@
 * addEvent(document.getElementById('myButton'), 'click', function() {
 * console.log('Button clicked!');
 * });
-* "--OR--"
+* //"--OR--"
 * addEvent(myBtnObj,'click', btnClickCallback);
 */
 export function addEvent(element, eventType, callback) {
@@ -30,6 +30,22 @@ export function addEvent(element, eventType, callback) {
 }
 
 
+/**
+* Adds an event listener to the current element (via `this`), typically used as an extension on `HTMLElement` objects.
+*
+* @param {string} eventType - The type of event to listen for (e.g., 'click', 'mouseover').
+* @param {Function} callback - The function to execute when the event is triggered.
+*
+* @throws {Warning} Logs a warning if any of the arguments are invalid.
+*
+* Example usage:
+* element.setEvent('click', function() {
+* console.log('Element clicked!');
+* });
+* //"--OR--"
+* element.setEvent('click', callbackMethod);
+*
+*/
 export function setEvent(eventType, callback) {
   if (this && typeof eventType === 'string' && typeof callback === 'function') {
     this.addEventListener(eventType, callback);
