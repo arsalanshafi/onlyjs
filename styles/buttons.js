@@ -1,38 +1,97 @@
-import { render } from "./../render.js";
-import { create } from "./../create.js";
-
-class Buttons 
-{
-  static btn1 (textContent, pos, textColor = 'white',  backgroundColor = '#0077b5', borderColor= '#0077b5') 
-  {
-    const btn_attr = 
-      {
-      type: 'button',
-      text: `${textContent}`,
-      };
-
-    let btn_style = {
-      color: `${textColor}`,
-      backgroundColor: `${backgroundColor}`,
-      border: `2px solid ${borderColor}`,
-      fontSize: '16px',
+export const buttons = {
+  btn1: {
+    style: {
+      backgroundColor: '#007BFF',
+      color: 'white',
+      border: 'none',
       padding: '10px 20px',
-      borderRadius: '4px',
+      borderRadius: '5px',
+      fontSize: '16px',
       cursor: 'pointer',
-      fontFamily: 'Arial, sans-serif',
-      textAlign: 'center',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      transition: 'background-color 0.3s, color 0.3s',
-    };
-
-    const btn = create(btn_attr, btn_style);
-    render(pos, 'inside', btn);
-  }
-
-
-}
-
-
-export { Buttons };
+      transition: 'background-color 0.3s ease',
+    },
+    hover: {
+      backgroundColor: '#0056b3',
+      color: 'white',
+      border: 'none',
+      padding: '10px 20px',
+      borderRadius: '5px',
+      fontSize: '16px',
+      cursor: 'pointer',
+    },
+  },
+  btn2: {
+    style: {
+      backgroundColor: '#3e8e41',
+      color: 'white',
+      border: '2px solid #2c6e2f',
+      padding: '12px 24px',
+      borderRadius: '50px',
+      fontSize: '18px',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+      transition: 'transform 0.3s ease, background-color 0.3s ease',
+    },
+    hover: {
+      backgroundColor: '#267a2f',
+      transform: 'scale(1.05)',
+      color: 'white',
+      border: '2px solid #2c6e2f',
+      padding: '12px 24px',
+      borderRadius: '50px',
+      fontSize: '18px',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    },
+  },
+  
+  btn3: {
+    style: {
+      backgroundColor: 'transparent',
+      color: '#007BFF',
+      border: '2px solid #007BFF',
+      padding: '10px 20px',
+      borderRadius: '30px',
+      fontSize: '16px',
+      cursor: 'pointer',
+      transition: 'color 0.3s ease, background-color 0.3s ease',
+    },
+    hover: {
+      color: 'white',
+      backgroundColor: '#007BFF',
+      border: '2px solid #007BFF',
+      padding: '10px 20px',
+      borderRadius: '30px',
+      fontSize: '16px',
+      cursor: 'pointer',
+    },
+  },
+  
+  btn4: {
+    style: {
+      backgroundColor: '#28a745',
+      color: 'white',
+      border: 'none',
+      padding: '12px 30px',
+      borderRadius: '50px',
+      fontSize: '18px',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+      boxShadow: '0 6px 12px rgba(0, 0, 0, 0.1)',
+      transition: 'box-shadow 0.3s ease, background-color 0.3s ease',
+    },
+    hover: {
+      backgroundColor: '#218838',
+      color: 'white',
+      border: 'none',
+      padding: '12px 30px',
+      borderRadius: '50px',
+      fontSize: '18px',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
+    },
+  },
+};
