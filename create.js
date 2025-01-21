@@ -64,11 +64,36 @@ export function create(element, styles = '') {
       }
     }
   }
+
+  // Apply responsive styles if the `responsive` property exists
+  if (styles.resp) {
+    applyResponsiveStyles(htmlElement, styles.resp);
+  }
+
+  // Listen to window resize event and update responsive styles dynamically
+  window.addEventListener('resize', () => {
+    if (styles.resp) {
+      applyResponsiveStyles(htmlElement, styles.resp);
+    }
+  });
+
   return htmlElement;
 } else {
   console.warn(`
   method 'create()' takes object's as argument,
   i.e 'create(elementObj, elementStyleObj)', please provide parms of suitable data type`);
-}
+  }
 }
 
+export function applyResponsiveStyles(element, resp) {
+  const screenWidth = window.innerWidth;
+
+  // Check screen size and apply corresponding responsive styles
+  if (screenWidth <= 600 && resp.small) {
+    Object.assign(element.style, resp.small);
+  } else if (screenWidth <= 1024 && resp.medium) {
+    Object.assign(element.style, resp.medium);
+  } else if (screenWidth => 1024 && resp.large) {
+    Object.assign(element.style, resp.large);
+  }
+}
