@@ -6,6 +6,8 @@
 * @copyright (c) 2025 Arsalan Khan. All Rights Reserved.
 */
 
+import { applyResponsiveStyles } from "./create.js";
+
 /**
 * Applies a set of CSS styles to an element selected by a query selector.
 *
@@ -26,6 +28,9 @@ export function style(element, styles) {
       if (styles.hasOwnProperty(styleProperty)) {
         htmlElement.style[styleProperty] = styles[styleProperty];
       }
+    }
+  if (styles.resp) {
+    applyResponsiveStyles(htmlElement, styles.resp);
     }
   } else {
     console.warn(`
@@ -54,6 +59,9 @@ export function setStyle(styles) {
       if (styles.hasOwnProperty(styleProperty)) {
         this.style[styleProperty] = styles[styleProperty];
       }
+    }
+    if (styles.resp) {
+      applyResponsiveStyles(this, styles.resp);
     }
   } else {
     console.warn("The setStyle method expects an object as an argument.");
