@@ -170,8 +170,6 @@ function main() {
 fucntion header() {
     const headerAttrs = {
         type: 'h1',
-        text: 'Welcome to my page!',
-        className: 'header-class',
     };
 
     const headerStyle = {
@@ -180,10 +178,12 @@ fucntion header() {
         fontSize: '2rem',
     };
 
-    const header = create(headerAttrs, headerStyle);
-    render(document.body, 'inside', header); // using render (read code for usage)
+    const h = create(headerAttrs, headerStyle);
+    render(this, 'inside', h); // using render (read code for usage)
 }
 ```
+ok so you can see some text onto the screen. Look at the code its all documented well.
+It will help you understand how to use the library properly
 
 ---
 
