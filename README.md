@@ -147,7 +147,6 @@ fucntion header() {
     };
 
     const header = create(headerAttrs, headerStyle);
-    render(document.body, 'inside', header); // Append header to the  
 }
 ```
 And now after saving the file you can run it using 
