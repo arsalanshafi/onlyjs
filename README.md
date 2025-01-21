@@ -1,4 +1,4 @@
-# **STILL IN ALPHA**
+# **STILL IN DEV.**
 ---
 
 # onlyjs - A Simple, Lightweight JavaScript UI Library
@@ -10,7 +10,10 @@
 - **Create HTML Elements**: Dynamically create and style HTML elements.
 - **Render Elements**: Insert elements into the DOM either inside or after a target element.
 - **Event Handling**: Attach event listeners to elements (for example, `click`, `submit`, etc.).
-- **Lightweight**: Minimal dependency on additional libraries or frameworks.
+- **responsive support**: on the go creation of responsive websites/webpages.
+- **Lightweight**: Minimal dependency, or bearely any dependency required.
+- **only using js**: no need to create css files or even multiple html files, JS is enough.
+
 
 ---
 
@@ -41,19 +44,18 @@ git clone https://github.com/your-username/onlyjs.git
 
 Alternatively, you can download the ZIP file and extract it.
 
-### Step 2: Install Dependencies
+### Step 2: Setup files
 
-Navigate to the cloned repository folder:
-
-```bash
-cd onlyjs
-```
-
-Then, install the required dependencies via npm:
+In the project directory start the npm, if not already
 
 ```bash
-npm install
+npm init
 ```
+then, create `app.js` and `index.html`
+> note the `index.html` should have `app.js` linked along with the `type='module'` specifier i.e
+>```html
+> <script type='module' src='./app.js'>
+>```
 
 ### Step 3: Install BrowserSync
 
@@ -63,11 +65,13 @@ npm install
 npm install browser-sync --save-dev
 ```
 
+`Note` : the *browser-sync* needs configuration which has already taken care of via the file `/onlyjs/browsersync.js` so you just need to add the following line (prescribed in **step 4**).
+
 ### Step 4: Edit the package.json file
 
 Add the following line `'start' : 'node browsersync.js'` in the `scripts` section.
 
-```
+```json
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start":"node ./browsersync.js"
@@ -80,27 +84,56 @@ This will ensure that the dev environment will work locally.
 
 ### Step 1: Import the Library
 
-Once you have cloned or downloaded the repo, include the `onlyjs` functions into your JavaScript file. You can use them in your web project by importing the necessary methods.
+To use the library we need to import modules (methods) they handle nearly all about anything you need to create. out of them the most important is the `only.js` (yeah figured that out, right?)
 
 ```javascript
-import { onlyjs } from "./only.js";
-import { create } from "./create.js";
-import { render } from "./render.js";
-import { select } from "./select.js";
-import { event } from "./event.js"; // (when you add the event function)
+import { onlyjs } from "./onlyjs/only.js";
 ```
+> importing is all, i am from a `C` background so its mostly wirtten with c mindset. again importing is all, you have to use it. you will need to exactly tell what to do.
 
+The onlyjs method ensures that the styles and what ever you are doing should only apply after the `DOM` has been created successfully.
+
+For easy usage the whole project need one main file which is to be passed to the `onlyjs` function, and thats the verymuch working of the library.
+```javascript
+import { onlyjs } from "./onlyjs/only.js";
+onlyjs(main);
+function main()
+{
+  // the other method calls goes in here
+}
+```
 ### Step 2: Set up Your JavaScript
 
 #### Example: Create and Render Elements
 
-Use the library to create and render HTML elements dynamically.
+Using the library to create and render HTML elements dynamically. There are several ways we can create a dynamic element among of which is the following.
+
+After we just import another method from the `onlyjs` directory/folder called `create()`, booo really hard to guess, it creates an html element. 
+
+> `Note` : Each file may contain more then one methods along with its usage documentation, everything won't be provided in the README.md
 
 ```javascript
+import { onlyjs } from "./onlyjs/only.js";
+import { create } from "./onlyjs/create.js"; // imported this file
+
 onlyjs(main);
 
-function main() {
-    // Example: Create and render an <h1> element with styles
+function main() { 
+}
+```
+Now how to use it, so the create() takes 2 objects one is the element object(the type of html element we want) while the other is the style (the styles we want this element to have.)
+
+```javascript
+import { onlyjs } from "./onlyjs/only.js";
+import { create } from "./onlyjs/create.js";
+
+onlyjs(main);
+
+function main() { 
+  header(); // created header function 
+}
+
+fucntion header() {
     const headerAttrs = {
         type: 'h1',
         text: 'Welcome to my page!',
@@ -114,105 +147,50 @@ function main() {
     };
 
     const header = create(headerAttrs, headerStyle);
-    render(document.body, 'inside', header); // Append header to the body
+    render(document.body, 'inside', header); // Append header to the  
 }
 ```
+And now after saving the file you can run it using 
 
-#### Example: Adding Event Listeners
-
-Once the `event()` method is added to your library, you can attach event listeners to elements. For example:
+```
+npm start
+```
+yeah yeah i know you cant see anything, its not workng. What did i told you i am from a c mindset. you have just created the element but its not yet rendered onto the DOM. its just in the memeory. so to render it we you `render()` method/function. i really talk about methods and fucntions interchangely so you have been warned.
 
 ```javascript
-event('.header-class', 'click', () => {
-    alert('Header clicked!');
-});
+import { onlyjs } from "./onlyjs/only.js";
+import { create } from "./onlyjs/create.js";
+import { render } from "./onlyjs/render.js"; // imported render()
+
+onlyjs(main);
+
+function main() { 
+  header(); 
+}
+
+fucntion header() {
+    const headerAttrs = {
+        type: 'h1',
+        text: 'Welcome to my page!',
+        className: 'header-class',
+    };
+
+    const headerStyle = {
+        textAlign: 'center',
+        color: 'blue',
+        fontSize: '2rem',
+    };
+
+    const header = create(headerAttrs, headerStyle);
+    render(document.body, 'inside', header); // using render (read code for usage)
+}
 ```
-
-This will add a `click` event listener to the element with the class `header-class` and show an alert when clicked.
-
----
-
-## Method Details
-
-### `onlyjs(main)`
-
-Ensures that the provided `main` function is only executed when the DOM is fully loaded.
-
-- **Parameters**: 
-  - `main` (Function): The function to execute after the DOM is ready.
-  
-- **Usage**: 
-  ```javascript
-  onlyjs(main);
-  ```
-
-### `create(element, styles)`
-
-Creates an HTML element with specified attributes and optional styles.
-
-- **Parameters**: 
-  - `element` (Object): An object containing the type of element, text, ID, class, and other attributes (e.g., `type`, `id`, `className`, `text`, etc.).
-  - `styles` (Object): An optional object containing CSS style properties.
-
-- **Returns**: 
-  - The created HTML element.
-
-- **Example**:
-  ```javascript
-  const divAttrs = { type: 'div', className: 'myDiv', text: 'Hello World' };
-  const divStyles = { backgroundColor: 'lightgreen', padding: '20px' };
-  const div = create(divAttrs, divStyles);
-  ```
-
-### `render(whome, where, what)`
-
-Renders the created element (`what`) inside or after another element (`whome`).
-
-- **Parameters**:
-  - `whome` (Element): The target DOM element where the new element will be inserted.
-  - `where` (String): The position relative to the target element (`'inside'` or `'after'`).
-  - `what` (Element): The element to insert into the DOM.
-
-- **Usage**:
-  ```javascript
-  render(document.body, 'inside', header);  // Append header inside body
-  render(document.body, 'after', footer);  // Append footer after body
-  ```
-
-### `select(id_class)`
-
-Selects a DOM element using a CSS selector (`id`, `class`, or other selector).
-
-- **Parameters**:
-  - `id_class` (String): A CSS selector string (e.g., `'#elementId'`, `'.elementClass'`).
-  
-- **Returns**: 
-  - The DOM element matching the selector.
-
-- **Usage**:
-  ```javascript
-  const myDiv = select('#myDiv');
-  ```
-
-### `event(element, eventType, callback)`
-
-Attaches an event listener to a DOM element.
-
-- **Parameters**:
-  - `element` (String): A CSS selector (`#id`, `.class`).
-  - `eventType` (String): The type of event (e.g., `'click'`, `'submit'`).
-  - `callback` (Function): The function to execute when the event is triggered.
-  
-- **Usage**:
-  ```javascript
-  event('.my-button', 'click', () => alert('Button clicked!'));
-  ```
 
 ---
 
 ## Deployment
 
-Once you've finished developing your website using the `onlyjs` library and are ready to make it available to others, you can deploy your project online.
+Once you've finished developing your website using the `onlyjs` library and are ready to make it available to others, you can deploy your project online. The browser-sync was only required for local devlopement, online there are no dependencies that the library require other than a nodejs server (and even that for just using import and export keywords, since JS dons't support them locally)
 
 ---
 
