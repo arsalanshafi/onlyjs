@@ -9,25 +9,33 @@ class Background {
       id: 'matrixCanvas',
       className: 'background'
     };
-/*
-    const canvasStyle = {
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      zIndex: '-1' // To place the canvas in the background
-    };
 
-*/    
     const canvasStyle = {
-    position: 'fixed',  // Fixed positioning to stay in place when scrolling
-    top: '0',
-    left: '0',
-    right: '0',
-    bottom: '0',  // Ensure it covers the full viewport
-    zIndex: '-1', // Behind all other content
-    pointerEvents: 'none'  // Prevent canvas from interfering with user interactions
+      resp: {
+        small: {
+          position: 'absolute',  
+          top: '0',
+          left: '0',
+          zIndex: '-1',
+          pointerEvents: 'none',
+        },
+        medium: {
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          zIndex: '-1',
+          pointerEvents: 'none',
+        },
+        large: {
+          position: 'fixed',  
+          top: '0',
+          left: '0',
+          right: '0',
+          bottom: '0',  
+          zIndex: '-1',
+          pointerEvents: 'none',
+        },
+      }
     };
 
     const canvas = create(canvasAttrs, canvasStyle);
@@ -48,11 +56,27 @@ class Background {
       drops = new Array(columns).fill(0); // Initialize drops for each column
     }
 
+    // Check if the screen size is small/medium/large
+    function applyResponsiveStyles() {
+      const isSmallScreen = window.matchMedia("(max-width: 600px)").matches;
+      const isMediumScreen = window.matchMedia("(max-width: 1200px)").matches;
+
+      // Apply canvas styles for small or medium screens
+      if (isSmallScreen || isMediumScreen) {
+        // Don't resize the canvas on small/medium screens
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight; 
+      } else {
+        // Full screen styles for large screens
+        resizeCanvas();
+      }
+    }
+
     // Initial canvas size setup
-    resizeCanvas();
+    applyResponsiveStyles();
 
     // Event listener for window resize
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', applyResponsiveStyles);
 
     // Matrix effect function
     function draw() {
