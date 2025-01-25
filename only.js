@@ -10,6 +10,8 @@
  * :wqa
  * */
 
+import { main } from "./app.js";
+import { setEvent, addEvent } from "./event.js";
 /*
  * Executes a function once the DOM content has fully loaded, ensuring the DOM is ready for manipulation.
  * If the DOM is already loaded, it immediately executes the provided function.
@@ -32,3 +34,13 @@ export function onlyjs(main) {
     }
 
 }
+
+(function() {
+    // Look for the user-defined 'main' function
+    if (typeof main === 'function') {
+        // If it's defined, automatically call onlyjs(main)
+        onlyjs(main);
+    } else {
+        console.error('No "main" function found. Please define a main function.');
+    }
+})();
