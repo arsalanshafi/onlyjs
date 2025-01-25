@@ -50,6 +50,16 @@ By default the position set to 'document.body.<thisElement>'`);
     }
 }
 
-export function clear() {
-  document.body.innerHTML = '';
+
+export function clear()
+{
+  const fadeStyle = {
+  transition: 'opacity 2s ease-out',
+  opacity: '0',
+  };
+
+  document.body.setStyle(fadeStyle);
+  setTimeout(() => {
+    document.body.innerHTML = '';
+  },2000);
 }
