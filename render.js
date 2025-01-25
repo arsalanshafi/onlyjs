@@ -49,3 +49,7 @@ By default the position set to 'document.body.<thisElement>'`);
         break;
     }
 }
+
+export function clear() {
+  document.body.innerHTML = '';
+}
