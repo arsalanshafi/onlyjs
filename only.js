@@ -11,7 +11,7 @@
  * */
 
 import { main } from "./app.js";
-import { setEvent, addEvent } from "./event.js";
+
 /*
  * Executes a function once the DOM content has fully loaded, ensuring the DOM is ready for manipulation.
  * If the DOM is already loaded, it immediately executes the provided function.
