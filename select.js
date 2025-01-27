@@ -19,7 +19,7 @@
  * 3. select('elementName') - Selectsthe element using its 'name'.
  * 
  */
-export function select(id_class) {
-  const selector = document.querySelector(id_class);
+export function select(id_class_tag) {
+  const selector = document.querySelectorAll(id_class_tag);
     return selector;
 }
