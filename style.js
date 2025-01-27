@@ -21,16 +21,45 @@ import { applyResponsiveStyles } from "./create.js";
 * //"--OR--"
 * style(select('someselector'), styleObj);
 */
+
+function toNodeList(element) {
+  if (element instanceof NodeList) {
+    return element;
+  }
+
+  if (element instanceof Element) {
+    return [element];
+  }
+  if (typeof element === 'string') {
+    try {
+      const foundElement = document.querySelectorAll(element);
+      if (foundElement) {
+        return foundElement;
+
+      } else {
+        console.log("The selector (id, class, node) string-name is invalid, no element found!");
+
+      }
+    } catch (error) {
+      console.error("Invalid selector string:", error);
+    }
+
+  }
+}
+
 export function style(element, styles) {
-  const htmlElement = document.querySelector(element);
+  element = toNodeList(element);
+
   if (typeof styles === 'object' && styles !== null) {
     for (const styleProperty in styles) {
       if (styles.hasOwnProperty(styleProperty)) {
-        htmlElement.style[styleProperty] = styles[styleProperty];
+        element.forEach(element => {
+          element.style[styleProperty] = styles[styleProperty];
+        });
       }
     }
-  if (styles.resp) {
-    applyResponsiveStyles(htmlElement, styles.resp);
+    if (styles.resp) {
+      applyResponsiveStyles(htmlElement, styles.resp);
     }
   } else {
     console.warn(`
@@ -51,28 +80,51 @@ export function style(element, styles) {
 * //"--OR--"
 * element.setStyle(styleObj);
 */
+
+
 export function setStyle(styles) {
   if (typeof styles === 'object' && styles !== null) {
-    this.style.cssText = '';  // Remove all existing inline styles
+    // Check if this is a single element or a NodeList
+    if (this instanceof NodeList || this instanceof HTMLCollection) {
+      // If it's a NodeList (or HTMLCollection), loop through and apply styles
+      this.forEach(function (element) {
+        element.setStyle(styles);
+      });
+    } else {
+      // If it's a single element, apply styles directly
+      this.style.cssText = '';  // Remove all existing inline styles
 
-    for (const styleProperty in styles) {
-      if (styles.hasOwnProperty(styleProperty)) {
-        this.style[styleProperty] = styles[styleProperty];
+      for (const styleProperty in styles) {
+        if (styles.hasOwnProperty(styleProperty)) {
+          this.style[styleProperty] = styles[styleProperty];
+        }
       }
-    }
-    if (styles.resp) {
-      applyResponsiveStyles(this, styles.resp);
+
+      if (styles.resp) {
+        applyResponsiveStyles(this, styles.resp);
+      }
     }
   } else {
     console.warn("The setStyle method expects an object as an argument.");
   }
 }
 
+// Define the setStyle method on HTMLElement prototype
 Object.defineProperty(HTMLElement.prototype, 'setStyle', {
-  value: function(styles) {
+  value: function (styles) {
     setStyle.call(this, styles);
   },
   writable: true,
   configurable: true
 });
+
+// Also define the setStyle method on NodeList (or HTMLCollection) prototype
+Object.defineProperty(NodeList.prototype, 'setStyle', {
+  value: function (styles) {
+    setStyle.call(this, styles);
+  },
+  writable: true,
+  configurable: true
+});
+
 
