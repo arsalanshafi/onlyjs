@@ -42,7 +42,7 @@ By default the position set to 'document.body.<thisElement>'`);
   
     switch (domPos) {
       case position[0]:
-        whome.insertAdjacentElement('afterend', what);
+        whome[0].insertAdjacentElement('afterend', what);
         break;
       case position[1]:
         whome.appendChild(what);
