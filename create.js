@@ -32,15 +32,35 @@ export function create(element, styles = '') {
   if (typeof element === 'object') {
 
   const htmlElement = document.createElement(element.type);
-  const noTextElements = ['div', 'span', 'img', 'input', 'canvas', 'br', 'hr', 'meta', 'video', 'audio'];
+  const noTextElements = [
+  'div', 'span', 'img', 'input', 'canvas', 'br', 'hr', 'meta', 'video', 'audio',
+  "area", "base", "br", "col", "colgroup", "command", "embed",
+    "link", "source", "track", "wbr",];
 
-  if (noTextElements.includes(element.type.toLowerCase())) {
+  const html = [
+  "a", "abbr", "acronym", "address", "area", "article", "aside", "audio", "b", "base", 
+  "bdi", "bdo", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code", 
+  "col", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", 
+  "dl", "dt", "em", "embed", "fieldset", "figcaption", "figure", "footer", "form", "h1", 
+  "h2", "h3", "h4", "h5", "h6", "head", "header", "hr", "html", "i", "iframe", "img", "input", 
+  "ins", "kbd", "label", "legend", "li", "link", "main", "map", "mark", "meta", "meter", "nav", 
+  "noscript", "object", "ol", "optgroup", "option", "output", "p", "picture", "pre", "progress", 
+  "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "slot", "small", "source", 
+  "span", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "template", "textarea", 
+  "tfoot", "th", "thead", "time", "title", "tr", "track", "u", "ul", "var", "video", "wbr"];
+
+  // check if the html tag exists
+  if (html.includes(element.type.toLowerCase())) {
+
+    // check if the tag isn't a no text tag
+   if (noTextElements.includes(element.type.toLowerCase())) {
     htmlElement.innerText = '';
+
     if (element.type === 'input') {
       htmlElement.setAttribute('type', element.inputType);
       htmlElement.placeholder = element.placeholder;
-    }
-  } else {
+      }
+    } else {
 
     if (element.type === 'label') {
       htmlElement.setAttribute('for', element.htmlFor);
@@ -51,7 +71,14 @@ export function create(element, styles = '') {
 
     htmlElement.classList.add(element.className);
     htmlElement.id = element.id || '';
-    //htmlElement.className = element.className || ``;
+
+  } else {
+
+    const msg = `
+    The html tag/element you are trying to create dosn't exist: use a valid name.
+    `;
+    console.warn(msg);
+  }
 
 
   if (styles !== '') {
