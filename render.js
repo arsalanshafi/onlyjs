@@ -39,13 +39,16 @@ whereInDom : string =  'after' or 'inside'
 By default the position set to 'document.body.<thisElement>'`);
     return;
     }
+   const element = whome instanceof NodeList ? whome[0] : whome;   
   
     switch (domPos) {
       case position[0]:
-        whome[0].insertAdjacentElement('afterend', what);
+        //whome[0].insertAdjacentElement('afterend', what);
+        element.insertAdjacentElement('afterend', what);
         break;
       case position[1]:
-        whome.appendChild(what);
+        //whome.appendChild(what);
+        element.appendChild(what);
         break;
     }
 }
