@@ -41,6 +41,6 @@ export function onlyjs(main) {
         // If it's defined, automatically call onlyjs(main)
         onlyjs(main);
     } else {
-        console.error('No "main" function found. Please define a main function.');
+      console.log("welcome to onlyjs, The palce where you only need JS");
     }
 })();
