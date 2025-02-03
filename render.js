@@ -31,6 +31,10 @@
 
 
 export function render(whome = document.body, where, what) {
+  if (typeof what === 'string') {
+    whome.innerHTML += what;
+    return;
+  }
     const position = ['after', 'inside'];
     const domPos =  where.toLowerCase();
     if (!position.includes(domPos)) {
