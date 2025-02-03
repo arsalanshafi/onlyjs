@@ -116,11 +116,13 @@ export function applyResponsiveStyles(element, resp) {
   const screenWidth = window.innerWidth;
 
   // Check screen size and apply corresponding responsive styles
-  if (screenWidth <= 600 && resp.small) {
+  if (screenWidth <= 600 && resp.small && Object.keys(resp.small).length > 0) {
     Object.assign(element.style, resp.small);
-  } else if (screenWidth <= 1024 && resp.medium) {
+
+  } else if (screenWidth <= 1024 && resp.medium && Object.keys(resp.medium).length > 0 ){
     Object.assign(element.style, resp.medium);
-  } else if (screenWidth => 1024 && resp.large) {
+
+  } else if (screenWidth => 1024 && resp.large && Object.keys(resp.large).length > 0) {
     Object.assign(element.style, resp.large);
   }
 }
