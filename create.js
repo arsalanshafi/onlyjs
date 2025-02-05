@@ -31,7 +31,8 @@ export function create(element, styles = '') {
   
   if (typeof element === 'object') {
 
-  const htmlElement = document.createElement(element.type);
+  const tag = element.type.trim();
+  const htmlElement = document.createElement(tag);
   const noTextElements = [
   'div', 'span', 'img', 'input', 'canvas', 'br', 'hr', 'meta', 'video', 'audio',
   "area", "base", "br", "col", "colgroup", "command", "embed",
@@ -50,7 +51,7 @@ export function create(element, styles = '') {
   "tfoot", "th", "thead", "time", "title", "tr", "track", "u", "ul", "var", "video", "wbr"];
 
   // check if the html tag exists
-  if (html.includes(element.type.toLowerCase())) {
+  if (html.includes(element.type.trim().toLowerCase())) {
 
     // check if the tag isn't a no text tag
    if (noTextElements.includes(element.type.toLowerCase())) {
@@ -117,12 +118,15 @@ export function applyResponsiveStyles(element, resp) {
 
   // Check screen size and apply corresponding responsive styles
   if (screenWidth <= 600 && resp.small && Object.keys(resp.small).length > 0) {
+  element.style.cssText = ''; // reset all styles before applying
     Object.assign(element.style, resp.small);
 
   } else if (screenWidth <= 1024 && resp.medium && Object.keys(resp.medium).length > 0 ){
+  element.style.cssText = ''; // reset all styles before applying
     Object.assign(element.style, resp.medium);
 
   } else if (screenWidth => 1024 && resp.large && Object.keys(resp.large).length > 0) {
+    element.style.cssText = ''; // reset all styles before applying
     Object.assign(element.style, resp.large);
   }
 }
